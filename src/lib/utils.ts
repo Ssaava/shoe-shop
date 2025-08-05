@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const postData = async <D, P = undefined>(
   url: string,
-  data: D,
+  data?: D,
   params?: P
 ): Promise<AxiosResponse | unknown> => {
   try {
@@ -19,7 +19,8 @@ export const postData = async <D, P = undefined>(
       });
       return response;
     }
-    const response = await axios.post(url, data, {
+
+    const response = await axios.post(url, data ?? {}, {
       withCredentials: true,
     });
     return response;
