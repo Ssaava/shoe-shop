@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Admin from "@/layouts/Admin.tsx";
 import AdminHome from "@/pages/admin-pages/admin-home.tsx";
 import Customers from "@/pages/admin-pages/customers.tsx";
@@ -6,7 +6,7 @@ import Orders from "@/pages/admin-pages/orders.tsx";
 import Products from "@/pages/admin-pages/products.tsx";
 import Profile from "@/pages/admin-pages/profile.tsx";
 import Sales from "@/pages/admin-pages/sales.tsx";
-import PageNotFound from '@/pages/page-not-found.tsx';
+import PageNotFound from "@/pages/page-not-found.tsx";
 import Product from "@/pages/admin-pages/product.tsx";
 import EditProduct from "@/pages/admin-pages/edit-product.tsx";
 import AddNewProduct from "@/pages/admin-pages/add-new-product.tsx";
@@ -39,54 +39,67 @@ import RequestOtp from "@/pages/auth/request-otp.tsx";
 function App() {
   return (
     <>
-     <Routes>
-         <Route path={"/auth"} element={<UserLayout />}>
-             <Route path={"signin"} element={<SignIn />}/>
-             <Route path={"signup"} element={<SignUp />}/>
-             <Route path={"password-reset"} element={<ResetPassword />}/>
-             <Route path={"request-otp"} element={<RequestOtp />}/>
-             <Route path={"enter-otp"} element={<ResetToken />}/>
-         </Route>
+      <Routes>
+        <Route path={"/auth"} element={<UserLayout />}>
+          <Route index element={<Navigate to={"/auth/signin"} />} />
+          <Route path={"signin"} element={<SignIn />} />
+          <Route path={"signup"} element={<SignUp />} />
+          <Route path={"password-reset"} element={<ResetPassword />} />
+          <Route path={"request-otp"} element={<RequestOtp />} />
+          <Route path={"enter-otp"} element={<ResetToken />} />
+        </Route>
 
-         <Route path={"/"} element={<UserLayout />}>
-            <Route index element={<UserHome />}/>
-             <Route path={"about"} element={<About/>}/>
-             <Route path={"shop"} element={<Shop/>}/>
-             <Route path={"product/:productId"} element={<UserProduct />}/>
-             <Route path={"contact"} element={<Contact />}/>
-             <Route path={"cart"} element={<Cart/>}/>
-             <Route path={"checkout"} element={<Checkout/>}/>
-             <Route path={"orders"} element={<UserOrders/>}/>
-             <Route path={"order-details/:orderId"} element={<UserOrderDetails />}/>
-             <Route path={"my-account"} element={<UserAccount />}/>
-         </Route>
-         <Route path={"/admin"} element={<Admin />}>
-             <Route index element={<AdminHome />}/>
-             <Route path={"sales"} element={<Sales />}/>
-             <Route path={"notifications"} element={<NotificationsPage />} />
-             <Route path={"notification/:notificationId"} element={<NotificationPage />} />
-             {/*Products*/}
-             <Route path={"products"} element={<Products />}/>
-             <Route path={"add-new-product"} element={<AddNewProduct />}/>
-             <Route path={"product/:productId"} element={<Product />}/>
-             <Route path={"edit-product/:productId"} element={<EditProduct />}/>
-             {/*Customers*/}
-             <Route path={"customers"} element={<Customers />}/>
-             <Route path={"add-new-customer"} element={<AddNewCustomer />}/>
-             <Route path={"customer/:customerId"} element={<CustomerDetails />}/>
-             <Route path={"edit-customer/:customerId"} element={<EditCustomer />}/>
-             {/**/}
-             <Route path={"orders"} element={<Orders />}/>
-             <Route path={"orders/:orderId"} element={<AdminOrderDetails />}/>
-             <Route path={"orders/edit-order/:orderId"} element={<AdminEditOrder />}/>
-             <Route path={"categories"} element={<Categories />}/>
-             <Route path={"brands"} element={<Brands />}/>
-             <Route path={"profile"} element={<Profile />}/>
-         </Route>
-         <Route path={"*"} element={<PageNotFound />}/>
-     </Routes>
+        <Route path={"/"} element={<UserLayout />}>
+          <Route index element={<UserHome />} />
+          <Route path={"about"} element={<About />} />
+          <Route path={"shop"} element={<Shop />} />
+          <Route path={"product/:productId"} element={<UserProduct />} />
+          <Route path={"contact"} element={<Contact />} />
+          <Route path={"cart"} element={<Cart />} />
+          <Route path={"checkout"} element={<Checkout />} />
+          <Route path={"orders"} element={<UserOrders />} />
+          <Route
+            path={"order-details/:orderId"}
+            element={<UserOrderDetails />}
+          />
+          <Route path={"my-account"} element={<UserAccount />} />
+        </Route>
+        <Route path={"/admin"} element={<Admin />}>
+          <Route index element={<AdminHome />} />
+          <Route path={"sales"} element={<Sales />} />
+          <Route path={"notifications"} element={<NotificationsPage />} />
+          <Route
+            path={"notification/:notificationId"}
+            element={<NotificationPage />}
+          />
+          {/*Products*/}
+          <Route path={"products"} element={<Products />} />
+          <Route path={"add-new-product"} element={<AddNewProduct />} />
+          <Route path={"product/:productId"} element={<Product />} />
+          <Route path={"edit-product/:productId"} element={<EditProduct />} />
+          {/*Customers*/}
+          <Route path={"customers"} element={<Customers />} />
+          <Route path={"add-new-customer"} element={<AddNewCustomer />} />
+          <Route path={"customer/:customerId"} element={<CustomerDetails />} />
+          <Route
+            path={"edit-customer/:customerId"}
+            element={<EditCustomer />}
+          />
+          {/**/}
+          <Route path={"orders"} element={<Orders />} />
+          <Route path={"orders/:orderId"} element={<AdminOrderDetails />} />
+          <Route
+            path={"orders/edit-order/:orderId"}
+            element={<AdminEditOrder />}
+          />
+          <Route path={"categories"} element={<Categories />} />
+          <Route path={"brands"} element={<Brands />} />
+          <Route path={"profile"} element={<Profile />} />
+        </Route>
+        <Route path={"*"} element={<PageNotFound />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
