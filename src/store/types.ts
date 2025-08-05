@@ -10,6 +10,7 @@ export interface AuthState {
     lastname: string;
     role: string;
   } | null;
+  hasRefreshed: boolean;
   login: (data: { email: string; password: string }) => Promise<AxiosResponse>;
   createAccount: (data: {
     firstname: string;
@@ -18,7 +19,7 @@ export interface AuthState {
     password: string;
     contact?: string;
   }) => void;
-  refreshToken: (refreshToken: string) => void;
+  refreshToken: () => Promise<AxiosResponse | undefined>;
   resendVerification: (email: string) => void;
   logout: () => void;
 }
