@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { GetCountries } from "react-country-state-city";
 import SubmitButton from "@/components/admin-components/SubmitButton.tsx";
 import PasswordInput from "@/components/PasswordInput.tsx";
+import { useAuthStore } from "@/store/store";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const UserAccount = () => {
   const [countriesList, setCountriesList] = useState<
@@ -10,19 +12,20 @@ const UserAccount = () => {
       name: string;
     }[]
   >([]);
+  const user = useAuthStore((state) => state.user);
   const [settingsForm, setSettingsForm] = useState<{
     displayName: string;
     fullName: string;
-    email: string;
+    email?: string;
     country: string;
     userName: string;
     contact: string;
   }>({
     displayName: "",
-    fullName: "",
-    email: "",
+    fullName: user?.firstname + " " + user?.lastname,
+    email: user?.email,
     country: "",
-    userName: "",
+    userName: "name",
     contact: "",
   });
   const [passwordForm, setPasswordForm] = useState<{
@@ -88,13 +91,10 @@ const UserAccount = () => {
               className={"p-4 grid md:grid-cols-12 gap-4"}
             >
               <div className={"md:col-span-2"}>
-                <div
-                  className={
-                    "rounded-full center-items w-36 h-36 md:w-24 md:h-24 xl:w-36 xl:h-36 bg-gray-200 mx-auto"
-                  }
-                >
-                  <img src={"/"} alt={"Profile Image"} />
-                </div>
+                <Avatar className="w-36 h-36 md:w-24 md:h-24 xl:w-36 xl:h-36">
+                  <AvatarImage src="/logo.png" alt="Profile Image" />
+                  <AvatarFallback>PI</AvatarFallback>
+                </Avatar>
               </div>
               <div className={"md:col-span-5 vertical-spacing gap-6"}>
                 <label className={"vertical-spacing gap-2"}>
@@ -103,6 +103,7 @@ const UserAccount = () => {
                     onChange={handleSettingsForm}
                     type={"text"}
                     name={"displayName"}
+                    value={settingsForm.fullName}
                     placeholder={"display name"}
                     className={"w-full px-5 py-2 border"}
                   />
@@ -113,6 +114,7 @@ const UserAccount = () => {
                     onChange={handleSettingsForm}
                     type={"text"}
                     name={"fullName"}
+                    value={settingsForm.fullName}
                     placeholder={"full name"}
                     className={"w-full px-5 py-2 border"}
                   />
@@ -123,6 +125,7 @@ const UserAccount = () => {
                     onChange={handleSettingsForm}
                     type={"email"}
                     name={"email"}
+                    value={settingsForm.email}
                     placeholder={"user email"}
                     className={"w-full px-5 py-2 border"}
                   />
