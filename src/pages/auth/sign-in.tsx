@@ -31,9 +31,9 @@ const SignIn = () => {
   const submitForm = async (data: z.infer<typeof loginSchema>) => {
     const response = await login(data);
 
-    // if (response.status == 200) {
-    //   navigate("/");
-    // }
+    if (response.status == 200) {
+      navigate("/");
+    }
   };
   return (
     <>
