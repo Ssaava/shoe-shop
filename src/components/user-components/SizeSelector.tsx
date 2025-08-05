@@ -1,9 +1,9 @@
 import { Key } from "react";
 
 interface SizeSelectorProps {
-  sizes: number[];
-  handleSelectSize: (size: number) => void;
-  cartItemSize: number;
+  sizes: string[];
+  handleSelectSize: (size: string) => void;
+  cartItemSize: string;
 }
 
 const SizeSelector = ({
@@ -14,7 +14,7 @@ const SizeSelector = ({
   return (
     <>
       <div className={"flex items-center gap-2 mb-8"}>
-        {sizes.map((size: number, index: Key | null | undefined) => (
+        {sizes.map((size: string, index: Key | null | undefined) => (
           <button
             key={index}
             type="button"

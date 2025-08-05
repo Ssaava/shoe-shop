@@ -1,4 +1,3 @@
-import { products } from "@/assets/data.ts";
 import { gradientBackground } from "@/assets/utils.tsx";
 import SubmitButton from "@/components/admin-components/SubmitButton.tsx";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
@@ -6,6 +5,8 @@ import RelatedProducts from "@/components/user-components/RelatedProducts";
 import Review from "@/components/user-components/Review";
 import SizeSelector from "@/components/user-components/SizeSelector";
 import TabsSwitch from "@/components/user-components/TabsSwitch";
+import { useProductStore } from "@/store/store";
+import { Product } from "@/store/types";
 import "@smastrom/react-rating/style.css";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -16,29 +17,40 @@ import { useParams } from "react-router-dom";
 const UserProduct = () => {
   const [activeTab, setActiveTab] = useState<string>("description");
   const [count, setCount] = useState<number>(1);
+  const getProduct = useProductStore((state) => state.getProduct);
+  const products = useProductStore((state) => state.products);
+  const [product, setProduct] = useState<Product | null>(null);
   const [cartItem, setCartItem] = useState({
     productId: "",
-    size: 0,
+    size: "",
     quantity: 0,
   });
   const { productId } = useParams();
-  const product = products.find((product) => product.id === productId);
-  const productCategory = product?.category;
-  const productBrand = product?.brand;
+  const productCategory = product?.category?.name;
+  const productBrand = product?.brand?.name;
   const productName = product?.name;
   const relatedProducts = products.filter(
     (product) =>
-      (product.category === productCategory ||
-        product.brand === productBrand) &&
+      (product.category?.name === productCategory ||
+        product.brand?.name === productBrand) &&
       product.name !== productName
   );
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await getProduct(productId as string);
+      setProduct(response);
+      console.log("Response: ", response);
+    };
+    fetchProduct();
+  }, [getProduct, productId]);
+
   useEffect(() => {
     setCartItem((prev) => ({
       ...prev,
-      productId: product?.id ?? "",
+      productId: product?._id ?? "",
     }));
-  }, [product?.id]);
-  const sizes = [10, 7, 8, 9]; // this should be dynamic together with the product items data returned
+  }, [product?._id]);
   const handleActiveTab = (value: string) => {
     setActiveTab(value);
   };
@@ -58,7 +70,7 @@ const UserProduct = () => {
       }));
     }
   };
-  const handleSelectSize = (size: number) => {
+  const handleSelectSize = (size: string) => {
     setCartItem((prev) => ({
       ...prev,
       size: size,
@@ -83,13 +95,13 @@ const UserProduct = () => {
             <div style={gradientBackground} className={"relative"}>
               <div
                 className={
-                  "w-full h-full overflow-hidden flex items-center justify-center group"
+                  "max-w-[33.5rem] max-h-[25rem] w-full h-full object-cover overflow-hidden flex items-center justify-center group"
                 }
               >
                 <img
-                  src={product.image}
+                  src={product.images[0].url}
                   alt={product.name}
-                  className="duration-500 ease-in-out transform group-hover:scale-150"
+                  className="duration-500 ease-in-out transform group-hover:scale-150 "
                 />
               </div>
 
@@ -105,20 +117,20 @@ const UserProduct = () => {
                 <DialogContent>
                   <div
                     className={
-                      "bg-white max-w-[45rem] max-h-[45rem] h-full w-full"
+                      "bg-white max-w-[45rem] max-h-[45rem] h-full w-full object-cover"
                     }
                   >
                     <img
-                      src={product.image}
+                      src={product.images[0].url}
                       alt={product.name}
-                      className={"block w-full h-auto"}
+                      className={"block w-full h-full"}
                     />
                   </div>
                 </DialogContent>
               </Dialog>
             </div>
             <div className={"md:px-8 vertical-spacing"}>
-              <p className={"text-primary text-lg"}>{product.category}</p>
+              <p className={"text-primary text-lg"}>{product.category?.name}</p>
               <h2 className={"text-3xl font-extrabold"}>{product.name}</h2>
               <div className={"flex items-center gap-4"}>
                 <p className={"text-primary text-2xl font-bold"}>
@@ -126,17 +138,10 @@ const UserProduct = () => {
                 </p>
                 <p>+ free shipping</p>
               </div>
-              <p>
-                Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non
-                mauris vitae erat consequat auctor eu in elit. Class aptent
-                taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu
-                felis dapibus condimentum sit amet a augue. Sed non neque elit
-                sed.
-              </p>
+              <p>{product.description}</p>
               <SizeSelector
                 cartItemSize={cartItem.size}
-                sizes={sizes}
+                sizes={product.sizes}
                 handleSelectSize={handleSelectSize}
               />
               <div className={"border-y-[1px] py-4 flex items-center gap-4"}>
@@ -176,7 +181,9 @@ const UserProduct = () => {
                 </p>
                 <p>
                   Category:{" "}
-                  <span className={"text-gray-8"}>{product.category}</span>
+                  <span className={"text-gray-8"}>
+                    {product.category?.name}
+                  </span>
                 </p>
               </div>
             </div>
@@ -204,7 +211,7 @@ const UserProduct = () => {
                 Size
               </div>
               <div className={"col-span-10 border px-6 py-2"}>
-                <p>{sizes?.join(", ")}</p>{" "}
+                <p>{product.sizes?.join(", ")}</p>{" "}
               </div>
             </div>
           </div>

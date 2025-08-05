@@ -1,5 +1,5 @@
-import { Product } from "@/assets/types";
 import { gradientBackground } from "@/assets/utils";
+import { Product } from "@/store/types";
 import { Rating } from "@smastrom/react-rating";
 import { Link } from "react-router-dom";
 
@@ -20,10 +20,10 @@ const RelatedProducts = ({
           <p>There are currently no related products</p>
         ) : (
           <div className={"grid grid-cols-4 gap-4"}>
-            {relatedProducts.map(({ id, image, name, category, price }) => (
-              <div key={id}>
+            {relatedProducts.map(({ _id, images, name, category, price }) => (
+              <div key={_id}>
                 <Link
-                  to={`/product/${id}`}
+                  to={`/product/${_id}`}
                   reloadDocument
                   className={
                     "group w-full bg-white flex items-center justify-center p-4"
@@ -31,15 +31,15 @@ const RelatedProducts = ({
                   style={gradientBackground}
                 >
                   <img
-                    src={image}
+                    src={images[0].url}
                     alt={name}
                     className={"group-hover:scale-105 duration-700"}
                   />
                 </Link>
                 <div className={"vertical-spacing gap-2 w-fit mx-auto py-6"}>
-                  <p className={"text-sm text-center"}>{category}</p>
+                  <p className={"text-sm text-center"}>{category?.name}</p>
                   <Link
-                    to={`/product/${id}`}
+                    to={`/product/${_id}`}
                     reloadDocument
                     className={"font-extrabold text-lg block text-center"}
                   >
