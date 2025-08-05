@@ -1,20 +1,5 @@
 import z from "zod";
 
-export type Product = {
-  id: string;
-  name: string;
-  quantity: number;
-  price: string;
-  category: string;
-  brand: string;
-  gender: string;
-  size: string;
-  availability: string;
-  date: Date;
-  totalSales: string;
-  image: string;
-  color: string;
-};
 export type Wishlist = {
   id: string;
   productId: string;
