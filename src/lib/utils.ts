@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -9,25 +9,40 @@ export function cn(...inputs: ClassValue[]) {
 export const postData = async <D, P = undefined>(
   url: string,
   data: D,
-  token?: string,
   params?: P
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Promise<any> => {
+): Promise<AxiosResponse | unknown> => {
   try {
-    let response;
-    if (token) {
-      response = await axios.post(url, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    if (params) {
+      const response = await axios.post(url, data, {
         withCredentials: true,
-
         params,
       });
-    } else {
-      response = await axios.post(url, data, { withCredentials: true });
+      return response;
     }
+    const response = await axios.post(url, data, {
+      withCredentials: true,
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
+export const fetchData = async <P = undefined>(
+  url: string,
+  params?: P
+): Promise<AxiosResponse | unknown> => {
+  try {
+    if (params) {
+      const response = await axios.get(url, {
+        withCredentials: true,
+        params,
+      });
+      return response;
+    }
+    const response = await axios.get(url, {
+      withCredentials: true,
+    });
     return response;
   } catch (error) {
     return error;

@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { AuthState } from "./types";
+import { AuthState, ProductState } from "./types";
 import { createAuthSlice } from "./slices/createAuthSlice";
+import { createProductSlice } from "./slices/createProductSlice";
 export const useAuthStore = create<AuthState>()(
   persist(
     (...a) => ({
@@ -16,3 +17,7 @@ export const useAuthStore = create<AuthState>()(
     }
   )
 );
+
+export const useProductStore = create<ProductState>()((...a) => ({
+  ...createProductSlice(...a),
+}));

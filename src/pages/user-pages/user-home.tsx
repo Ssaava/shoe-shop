@@ -1,8 +1,6 @@
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-import shoes from "/images/sports-shoe4.png";
-import bgImageRunning from "/background-images/bg-static-running.jpg";
 import {
   Carousel,
   CarouselContent,
@@ -10,11 +8,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Services from "@/components/user-components/Services.tsx";
 import ProductSlider from "@/components/user-components/ProductSlider.tsx";
-import { products } from "@/assets/data.ts";
+import Services from "@/components/user-components/Services.tsx";
+import { useProductStore } from "@/store/store";
+import bgImageRunning from "/background-images/bg-static-running.jpg";
+import shoes from "/images/sports-shoe4.png";
 
 const UserHome = () => {
+  const products = useProductStore((state) => state.products);
   return (
     <>
       <div>
@@ -78,9 +79,13 @@ const UserHome = () => {
           <div className={"py-16 grid md:grid-cols-2 md:gap-6 lg:gap-12"}>
             <Carousel className={"overflow-hidden sm:overflow-auto"}>
               <CarouselContent>
-                {products.slice(0, 5).map(({ id, image, name }) => (
-                  <CarouselItem key={id}>
-                    <img src={image} alt={name} />
+                {products.slice(0, 5).map(({ _id, images, name }) => (
+                  <CarouselItem key={_id}>
+                    <img
+                      src={images[0].url}
+                      alt={name}
+                      className="max-w-[33.5rem] max-h-[25rem] w-full h-full object-cover"
+                    />
                   </CarouselItem>
                 ))}
               </CarouselContent>

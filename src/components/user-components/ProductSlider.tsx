@@ -1,17 +1,21 @@
-// @ts-nocheck
 import ProductCard from "@/components/user-components/ProductCard.tsx";
-import { products } from "@/assets/data.ts";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import usePrevNextButtons, {
   NextButton,
   PrevButton,
 } from "@/components/user-components/SliderButtons.tsx";
-import { SetStateAction, useCallback, useEffect, useState } from "react";
+import { useProductStore } from "@/store/store";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
+
+type CarouselApi = UseEmblaCarouselType[1];
 
 const ProductSlider = () => {
+  const products = useProductStore((state) => state.products);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState([]);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -32,28 +36,23 @@ const ProductSlider = () => {
     return;
   }, []);
 
-  // manage dots
   const onDotButtonClick = useCallback(
-    (index) => {
+    (index: number) => {
       if (!emblaApi) return;
       emblaApi.scrollTo(index);
     },
     [emblaApi]
   );
 
-  const onInit = useCallback(
-    (emblaApi: { scrollSnapList: () => SetStateAction<never[]> }) => {
-      setScrollSnaps(emblaApi.scrollSnapList());
-    },
-    []
-  );
+  const onInit = useCallback((emblaApi: CarouselApi) => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+  }, []);
 
-  const onSelect = useCallback(
-    (emblaApi: { selectedScrollSnap: () => SetStateAction<number> }) => {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
-    },
-    []
-  );
+  const onSelect = useCallback((emblaApi: CarouselApi) => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -68,15 +67,15 @@ const ProductSlider = () => {
         <div className="embla__container flex py-4">
           {products
             .slice(0, 10)
-            .map(({ id, name, image, category, price }, index) => (
+            .map(({ _id, name, images, category, price }, index) => (
               <ProductCard
                 key={index}
                 className={"embla__slide max-w-[22rem] mx-4"}
-                category={category}
+                category={category?.name}
                 name={name}
-                image={image}
+                image={images[0].url}
                 price={price}
-                productId={id}
+                productId={_id}
               />
             ))}
         </div>

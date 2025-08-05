@@ -1,8 +1,8 @@
-import { StateCreator } from "zustand";
-import { AuthState } from "../types";
 import { postData } from "@/lib/utils";
+import { AxiosResponse } from "axios";
+import { StateCreator } from "zustand";
 import { useAuthStore } from "../store";
-import { jwtDecode } from "jwt-decode";
+import { AuthState } from "../types";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 const initialState = {
   authenticating: false,
@@ -16,14 +16,11 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
   ...initialState,
 
   login: async (data: { email: string; password: string }) => {
-    const response = await postData<{
+    const response = (await postData<{
       email: string;
       password: string;
-    }>(`${SERVER_URL}/api/auth/login`, data);
+    }>(`${SERVER_URL}/api/auth/login`, data)) as AxiosResponse;
     console.log(response);
-
-    console.log(jwtDecode(response.data.access_token));
-
     set({ user: response.data.user });
     return response;
   },
