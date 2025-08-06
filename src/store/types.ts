@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 export interface AuthState {
   authenticating: boolean;
-  refresh_token: string;
+  loading: boolean;
   user: {
     contact: string;
     email: string;
