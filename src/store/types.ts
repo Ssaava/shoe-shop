@@ -1,15 +1,47 @@
 import { AxiosResponse } from "axios";
+export interface Address {
+  street: string;
+  city: string;
+  countryCode: string;
+  country: string;
+  isDefault: boolean;
+}
+
+export interface Order {
+  user: User;
+  products: {
+    product: Product;
+    quantity: number;
+    price: number;
+    size: string;
+  };
+  shipping_address: Address;
+  payment_method: string;
+  payment_status: "pending" | "completed" | "failed";
+  order_status: "processing" | "shipped" | "delivered" | "cancelled";
+  total_price: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface User {
+  contact: string;
+  email: string;
+  firstname: string;
+  isVerified: boolean;
+  lastname: string;
+  role: string;
+  wishlist: Product[];
+  orders: Order[];
+  addresses: Address[];
+  image: string;
+  coverImage: string;
+  joined: string;
+}
 export interface AuthState {
   authenticating: boolean;
-  refresh_token: string;
-  user: {
-    contact: string;
-    email: string;
-    firstname: string;
-    isVerified: boolean;
-    lastname: string;
-    role: string;
-  } | null;
+  loading: boolean;
+  user: User | null;
   hasRefreshed: boolean;
   login: (data: { email: string; password: string }) => Promise<AxiosResponse>;
   createAccount: (data: {
@@ -30,7 +62,7 @@ export interface Product {
   name: string;
   price: number;
   stock: number;
-  gender: "male" | "female";
+  gender: "male" | "female" | "both";
   description: string;
   images: ProductImage[];
   sizes: string[];

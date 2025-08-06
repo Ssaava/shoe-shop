@@ -18,15 +18,15 @@ const UserAccount = () => {
     fullName: string;
     email?: string;
     country: string;
-    userName: string;
-    contact: string;
+    userName?: string;
+    contact?: string;
   }>({
     displayName: "",
     fullName: user?.firstname + " " + user?.lastname,
     email: user?.email,
     country: "",
-    userName: "name",
-    contact: "",
+    userName: user?.email,
+    contact: user?.contact,
   });
   const [passwordForm, setPasswordForm] = useState<{
     currentPassword: string;

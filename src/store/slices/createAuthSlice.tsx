@@ -1,14 +1,14 @@
 import { postData } from "@/lib/utils";
 import { AxiosResponse } from "axios";
 import { StateCreator } from "zustand";
-import { useAuthStore } from "../store";
+import { useAuthStore, useProductStore } from "../store";
 import { AuthState } from "../types";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 const initialState = {
   authenticating: false,
-  refresh_token: "",
   user: null,
   hasRefreshed: false,
+  loading: false,
 };
 
 export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
@@ -43,19 +43,23 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
     return response;
   },
   refreshToken: async () => {
-    const { hasRefreshed, logout } = get();
+    const { hasRefreshed } = get();
     if (hasRefreshed) return;
+    set({ hasRefreshed: true, loading: true });
 
-    set({ hasRefreshed: true }); // ✅ Mark as refreshed
     const response = (await postData(
       `${SERVER_URL}/api/auth/refresh-token`
     )) as AxiosResponse;
+    await useProductStore.getState().getAllProducts();
+
+    console.log("Refreshing token");
+    console.log(response);
     if (response.status === 200) {
       set({ user: response.data.user });
-      return response;
     } else {
-      logout();
+      set({ ...initialState });
     }
+    set({ loading: false });
     return response;
   },
   resendVerification: async (email: string) => {
@@ -63,11 +67,11 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
   },
   logout: async () => {
     useAuthStore.persist.clearStorage();
-    set({ ...initialState });
     const response = (await postData(
       `${SERVER_URL}/api/auth/logout`
     )) as AxiosResponse;
     if (response.status === 200) {
+      set({ ...initialState });
       console.log("User logged out successfully");
     }
   },
