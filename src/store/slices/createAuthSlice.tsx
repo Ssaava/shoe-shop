@@ -53,6 +53,7 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
     await useProductStore.getState().getAllProducts();
 
     console.log("Refreshing token");
+    console.log(response);
     if (response.status === 200) {
       set({ user: response.data.user });
     } else {
