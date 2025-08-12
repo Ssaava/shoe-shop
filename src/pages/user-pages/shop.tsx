@@ -64,7 +64,7 @@ const Shop = () => {
                     src={images[0].url}
                     alt={"Product Name"}
                     className={
-                      "group-hover:scale-110 duration-700 block max-h-[14rem] max-w-[14rem] w-full h-full object-cover"
+                      "group-hover:scale-110 duration-700 block max-h-56 max-w-56 w-full h-full object-cover"
                     }
                   />
                 </Link>

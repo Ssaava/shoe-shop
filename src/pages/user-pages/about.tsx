@@ -30,7 +30,7 @@ const About = () => {
         <div className={"bg-gray-2 inline-padding mt-24 pb-8"}>
           <div className={"relative rounded-lg w-full"}>
             <img
-              className={"block rounded-lg max-h-[33.5rem] w-full object-cover"}
+              className={"block rounded-lg max-h-134 w-full object-cover"}
               src={backgroundImage}
               alt={"Background Image"}
             />
@@ -77,7 +77,7 @@ const About = () => {
           </h2>
           <p
             className={
-              "sm:w-fit sm:mx-auto text-justify md:text-center max-w-[70rem]"
+              "sm:w-fit sm:mx-auto text-justify md:text-center max-w-280"
             }
           >
             There are many variations of Lorem Ipsum available, but the majority
@@ -103,7 +103,7 @@ const About = () => {
         {/**/}
 
         <div className={"grid md:grid-cols-3"}>
-          <div className={"relative max-h-[46rem] h-full"}>
+          <div className={"relative max-h-184 h-full"}>
             <img
               className={"block w-full h-full object-cover"}
               src={speed}
@@ -126,7 +126,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className={"relative max-h-[46rem] h-full"}>
+          <div className={"relative max-h-184 h-full"}>
             <img
               className={"block w-full h-full object-cover"}
               src={quality}
@@ -149,7 +149,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className={"relative max-h-[46rem] h-full"}>
+          <div className={"relative max-h-184 h-full"}>
             <img
               className={"block w-full h-full object-cover"}
               src={comfort}
@@ -187,7 +187,7 @@ const About = () => {
           <h2 className={"w-fit mx-auto text-4xl md:text-6xl font-extrabold"}>
             AirPro X3. Turbocharged.
           </h2>
-          <p className={"sm:w-fit sm:mx-auto text-justify max-w-[45rem]"}>
+          <p className={"sm:w-fit sm:mx-auto text-justify max-w-180"}>
             Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris
             vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu
             ad litora torquent per conubia nostra, per inceptos himenaeos.

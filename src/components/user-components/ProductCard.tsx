@@ -23,13 +23,13 @@ const ProductCard = ({
   };
   return (
     <>
-      <div className={`${className} min-w-[18.75rem] rounded-lg shadow-md`}>
+      <div className={`${className} min-w-75 rounded-lg shadow-md`}>
         <Link
           to={`/product/${productId}`}
           reloadDocument
           style={gradientBackground}
           className={
-            "rounded-t-lg w-full h-[17.5rem] bg-white flex items-center justify-center p-4"
+            "rounded-t-lg w-full h-70 bg-white flex items-center justify-center p-4"
           }
         >
           <img

@@ -44,7 +44,7 @@ const DeleteProduct = ({ children, productId }: Props) => {
             <button
               onClick={handleCloseModel}
               className={
-                "w-full px-6 py-3 text-gray-8 border-[1px] bg-transparent rounded-lg"
+                "w-full px-6 py-3 text-gray-8 border bg-transparent rounded-lg"
               }
             >
               Cancel

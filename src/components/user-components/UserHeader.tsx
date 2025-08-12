@@ -92,7 +92,7 @@ const UserHeader = () => {
                   My Account
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className={"w-full bg-white shadow-md"}>
-                  <div className={" w-[14rem] flex flex-col"}>
+                  <div className={" w-56 flex flex-col"}>
                     {user ? (
                       <>
                         <NavigationMenuLink
@@ -156,7 +156,7 @@ const UserHeader = () => {
       </nav>
       <div
         className={`md:hidden ${
-          smallScreenNav ? "max-h-[24rem]" : "max-h-0 overflow-hidden"
+          smallScreenNav ? "max-h-96" : "max-h-0 overflow-hidden"
         } duration-300`}
       >
         <div className={"py-6 vertical-spacing inline-padding bg-[#F2F4F6] "}>
@@ -204,7 +204,7 @@ const UserHeader = () => {
             </li>
             <ul
               className={
-                "max-h-0 overflow-hidden group-hover:max-h-[14rem] ml-4 duration-300"
+                "max-h-0 overflow-hidden group-hover:max-h-56 ml-4 duration-300"
               }
             >
               <div className={"py-2 vertical-spacing gap-2"}>

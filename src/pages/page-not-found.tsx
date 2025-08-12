@@ -8,7 +8,7 @@ const PageNotFound = ()=>{
                 <UserHeader/>
                 <div
                     className={"w-screen pb-16 section inline-padding flex flex-col bg-[#F2F4F6]"}>
-                    <div className={"bg-white max-w-[75rem] w-full p-6 md:p-16 mx-auto mt-16 vertical-spacing"}>
+                    <div className={"bg-white max-w-300 w-full p-6 md:p-16 mx-auto mt-16 vertical-spacing"}>
                         <h3 className={"text-2xl md:text-6xl font-extrabold md:text-center text-secondary"}>This page
                             doesn't seem to exist.</h3>
                     </div>

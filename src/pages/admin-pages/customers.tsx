@@ -52,10 +52,10 @@ const Customers = ()=>{
 
                             <form
                                 onSubmit={e => e.preventDefault()}
-                                className={"rounded-xl border-[1px] px-6 border-gray-[#111111] flex gap-4 items-center"}>
+                                className={"rounded-xl border px-6 border-gray-[#111111] flex gap-4 items-center"}>
                                 <input type={"search"}
                                        placeholder={"search customers..."}
-                                       className={"w-full py-2 ring-0 bg-none border-none outline-none"}/>
+                                       className={"w-full py-2 ring-0 bg-none border-none outline-hidden"}/>
                                 <button type={"submit"} className={"border-none shadow-none"}>
                                     <CiSearch className={"text-2xl"}/>
                                 </button>
@@ -78,7 +78,7 @@ const Customers = ()=>{
                         <AddButton title={'Add New Customer'} link={'/admin/add-new-customer'}/>
                     </div>
                     <div>
-                        <Table className={"min-w-[46rem]"}>
+                        <Table className={"min-w-184"}>
                             <TableHeader>
                                 <TableRow className={"font-bold"}>
                                     <TableHead>ID</TableHead>

@@ -50,7 +50,7 @@ const AdminEditOrder = ()=>{
                     <div className={'rounded-lg bg-white p-4 lg:col-span-8 vertical-spacing h-fit'}>
                         <h3 className={"font-bold text-lg"}>Products: {" "} <span className={"font-light text-sm"}>({orders.length})</span></h3>
                         <div>
-                            <Table className={"min-w-[46rem]"}>
+                            <Table className={"min-w-184"}>
                                 <TableHeader>
                                     <TableRow className={"font-bold"}>
                                         <TableHead>Product</TableHead>

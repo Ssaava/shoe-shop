@@ -59,10 +59,10 @@ const Categories = ()=>{
                         <div className={"flex gap-4 items-center flex-wrap"}>
                             <form
                                 onSubmit={e => e.preventDefault()}
-                                className={"rounded-xl border-[1px] px-6 border-gray-[#111111] flex gap-4 items-center"}>
+                                className={"rounded-xl border px-6 border-gray-[#111111] flex gap-4 items-center"}>
                                 <input type={"search"}
                                        placeholder={"search here categories"}
-                                       className={"w-full py-3 ring-0 bg-none border-none outline-none"}/>
+                                       className={"w-full py-3 ring-0 bg-none border-none outline-hidden"}/>
                                 <button type={"submit"} className={"border-none shadow-none"}>
                                     <CiSearch className={"text-2xl"}/>
                                 </button>
@@ -85,7 +85,7 @@ const Categories = ()=>{
 
                         <Dialog>
                             <DialogTrigger
-                                className={" min-w-[9rem] border-[1px] border-primary text-primary flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white hover:border-primary duration-300"}>
+                                className={" min-w-36 border border-primary text-primary flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white hover:border-primary duration-300"}>
                                 <LuPlus/>Add New Product Category
                             </DialogTrigger>
                             <DialogContent>
@@ -104,7 +104,7 @@ const Categories = ()=>{
 
                     </div>
                     <div>
-                        <Table className={"min-w-[46rem]"}>
+                        <Table className={"min-w-184"}>
                             <TableHeader>
                                 <TableRow className={"font-bold"}>
                                     <TableHead>Category Id</TableHead>

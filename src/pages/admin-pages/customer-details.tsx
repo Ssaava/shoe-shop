@@ -45,12 +45,12 @@ const CustomerDetails = ()=>{
 
         {/*    Details */}
             <div className={"flex gap-4 mt-8 flex-wrap"}>
-                <div className={"max-w-[35rem] mx-auto w-full bg-white rounded-lg vertical-spacing"}>
+                <div className={"max-w-140 mx-auto w-full bg-white rounded-lg vertical-spacing"}>
                     <div className={"vertical-spacing p-6 "}>
                         <div className={"relative rounded-lg w-full"}>
                             <img src={backgroundImage} alt={"Background image"} className={"rounded-lg block"}/>
                             <div
-                                className={"absolute -bottom-10 md:-bottom-20 w-[5rem] h-[5rem] md:w-[8rem] md:h-[8rem] rounded-full border-[.5rem] border-green-5 left-1/2 -translate-x-1/2"}>
+                                className={"absolute -bottom-10 md:-bottom-20 w-20 h-20 md:w-32 md:h-32 rounded-full border-[.5rem] border-green-5 left-1/2 -translate-x-1/2"}>
                                 <img src={userImage} alt={"User Image"} className={"block rounded-full w-full h-full"}/>
                             </div>
                         </div>
@@ -77,7 +77,7 @@ const CustomerDetails = ()=>{
                 </div>
                 <div className={"flex-1 bg-white p-6  overflow-scroll min-w-[18rem] vertical-spacing"}>
                     <h3 className={'font-extrabold text-xl md:text-3xl'}>Orders</h3>
-                    <Table className={"min-w-[46rem]"}>
+                    <Table className={"min-w-184"}>
                         <TableHeader>
                             <TableRow className={"font-bold"}>
                                 <TableHead>Order ID</TableHead>
@@ -146,7 +146,7 @@ const CustomerDetails = ()=>{
 
                  <div className={"bg-white p-6 w-full overflow-scroll min-w-[18rem] vertical-spacing"}>
                     <h3 className={'font-extrabold text-xl md:text-3xl'}>WhishList</h3>
-                     <Table className={"min-w-[46rem]"}>
+                     <Table className={"min-w-184"}>
                          <TableHeader>
                              <TableRow className={"font-bold"}>
                                  <TableHead>Product ID</TableHead>

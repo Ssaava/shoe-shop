@@ -12,7 +12,7 @@ const UserMenu = ({user}: {user: {
             <MenubarMenu>
                 <MenubarTrigger>
                     <div className={"flex items-center gap-2"}>
-                        <div className={"rounded-full bg-notification h-[3rem] w-[3rem] center-items"}>
+                        <div className={"rounded-full bg-notification h-12 w-12 center-items"}>
                             {
                                 user.image != '' ?
                                     <img className={'w-full h-full rounded-full object-cover'} src={user.image} alt={user.name}/>
