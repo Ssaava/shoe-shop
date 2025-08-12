@@ -75,10 +75,7 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
     )) as AxiosResponse;
 
     console.log("Register Response: ", response);
-    if (response.status === 200) {
-      set({ ...initialState });
-      return response;
-    }
+
     set({ loading: false });
     return response;
   },
