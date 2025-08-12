@@ -70,10 +70,11 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
   registerUser: async (data: RegisterUserType) => {
     set({ loading: true });
     const response = (await postData<RegisterUserType>(
-      `${SERVER_URL}/api/auth/logout`,
+      `${SERVER_URL}/api/auth/register`,
       data
     )) as AxiosResponse;
 
+    console.log("Register Response: ", response);
     if (response.status === 200) {
       set({ ...initialState });
       return response;

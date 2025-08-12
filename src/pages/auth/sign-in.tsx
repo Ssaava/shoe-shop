@@ -10,6 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 const SignIn = () => {
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
+  const loading = useAuthStore((state) => state.loading);
+
   const form = useForm<LoginUserType>({
     resolver: zodResolver(LoginUserSchema),
     defaultValues: {
@@ -83,7 +85,7 @@ const SignIn = () => {
                   </label>
                 </div>
 
-                <SubmitButton title={"Sign In"} />
+                <SubmitButton title={loading ? "Signing in..." : "Sign In"} />
               </form>
             </Form>
             <p className={"text-sm"}>

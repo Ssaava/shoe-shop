@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosResponse } from "axios";
 import { z } from "zod";
 export interface Address {
@@ -55,7 +56,7 @@ export interface AuthState {
   }) => void;
   refreshToken: () => Promise<AxiosResponse | undefined>;
   resendVerification: (email: string) => void;
-  registerUser: (data: RegisterUserType) => Promise<AxiosResponse | undefined>;
+  registerUser: (data: RegisterUserType) => Promise<AxiosResponse | any>;
   logout: () => Promise<AxiosResponse | undefined>;
 }
 

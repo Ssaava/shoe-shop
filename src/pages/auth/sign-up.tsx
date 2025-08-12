@@ -4,11 +4,14 @@ import { Form } from "@/components/ui/form";
 import { useAuthStore } from "@/store/store";
 import { RegisterUserSchema, RegisterUserType } from "@/store/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
   const navigate = useNavigate();
   const registerUser = useAuthStore((state) => state.registerUser);
+  const loading = useAuthStore((state) => state.loading);
+  const [errorMessage, setErrorMessage] = useState("");
   const form = useForm<RegisterUserType>({
     resolver: zodResolver(RegisterUserSchema),
     defaultValues: {
@@ -19,11 +22,14 @@ const SignUp = () => {
     },
   });
   const submitForm = async (data: RegisterUserType) => {
+    setErrorMessage("");
     const response = await registerUser(data);
 
     if (response?.status == 201) {
       navigate("/auth/signin");
+      return;
     }
+    setErrorMessage(response?.response.data.message);
   };
   return (
     <>
@@ -40,20 +46,28 @@ const SignUp = () => {
               "max-w-[35rem] w-full p-8 vertical-spacing bg-white rounded-xl border shadow-gray-200 mx-auto"
             }
           >
-            <h3
-              className={
-                "text-2xl md:text-5xl font-extrabold md:text-center text-primary"
-              }
-            >
-              Sign Up
-            </h3>
-            <p className={"text-gray-8 text-sm text-center"}>
-              Enter your personal details to create an account
-            </p>
+            <div className="mb-4 space-y-4">
+              <h3
+                className={
+                  "text-2xl md:text-5xl font-extrabold md:text-center text-primary"
+                }
+              >
+                Sign Up
+              </h3>
+              <p className={"text-gray-8 text-sm text-center"}>
+                Enter your personal details to create an account
+              </p>
+            </div>
+
+            {errorMessage && (
+              <div className="border border-red-400 py-1 px-3 text-red-500 font-medium bg-red-200/20 flex items-center justify-center w-full rounded-lg">
+                {errorMessage}
+              </div>
+            )}
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(submitForm)}
-                className={"w-full vertical-spacing mt-4 gap-6"}
+                className={"w-full vertical-spacing gap-6 mt-4"}
               >
                 <div className={"grid md:grid-cols-2 gap-4"}>
                   <FormItemInput
@@ -61,14 +75,16 @@ const SignUp = () => {
                     name="firstname"
                     label="First Name"
                     placeholder="enter first name"
-                    showError={true}
+                    showError
+                    isRequired
                   />
                   <FormItemInput
                     form={form}
                     name="lastname"
                     label="Last Name"
                     placeholder="enter last name"
-                    showError={true}
+                    showError
+                    isRequired
                   />
                 </div>
 
@@ -77,7 +93,8 @@ const SignUp = () => {
                   name="email"
                   label="Email Address"
                   placeholder="enter email address"
-                  showError={true}
+                  showError
+                  isRequired
                 />
                 <FormItemInput
                   form={form}
@@ -85,10 +102,11 @@ const SignUp = () => {
                   label="Password"
                   type="password"
                   placeholder="**********"
-                  showError={true}
+                  showError
+                  isRequired
                 />
 
-                <SubmitButton title={"Sign Up"} />
+                <SubmitButton title={loading ? "registering..." : "Register"} />
               </form>
             </Form>
             <p className={"text-sm"}>
