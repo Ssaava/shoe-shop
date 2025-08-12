@@ -1,9 +1,10 @@
-import logo from "/full-logo.png";
-import { Link } from "react-router-dom";
 import { useActiveNav } from "@/assets/utils.tsx";
 import Cart from "@/components/user-components/Cart.tsx";
 import { IoMdMenu } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "/full-logo.png";
 
+import HeaderLink from "@/components/HeaderLink.tsx";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,9 +13,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { FaChevronRight } from "react-icons/fa";
-import HeaderLink from "@/components/HeaderLink.tsx";
 import { useAuthStore } from "@/store/store";
+import { FaChevronRight } from "react-icons/fa";
 import { Button } from "../ui/button";
 
 const UserHeader = () => {
@@ -25,9 +25,19 @@ const UserHeader = () => {
     handleActiveBar,
     path,
   } = useActiveNav();
+  const navigate = useNavigate();
 
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
+  const loggingOut = useAuthStore((state) => state.loggingOut);
+
+  const handleLogout = async () => {
+    const response = await logout();
+
+    if (response?.status == 200) {
+      navigate(0);
+    }
+  };
   return (
     <>
       <nav className={"flex items-center gap-4 section bg-white z-50"}>
@@ -82,7 +92,7 @@ const UserHeader = () => {
                   My Account
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className={"w-full bg-white shadow-md"}>
-                  <div className={" w-[14rem] flex flex-col"}>
+                  <div className={" w-56 flex flex-col"}>
                     {user ? (
                       <>
                         <NavigationMenuLink
@@ -111,14 +121,14 @@ const UserHeader = () => {
                         <NavigationMenuLink
                           onClick={() => {
                             handleActiveBar("my-account");
-                            logout();
+                            handleLogout();
                           }}
                           asChild
                         >
                           <Button
                             className={`hover:text-primary hover-font-medium px-5 py-3 duration-300`}
                           >
-                            Logout
+                            {loggingOut ? "Logging Out...." : "Logout"}
                           </Button>
                         </NavigationMenuLink>
                       </>
@@ -146,7 +156,7 @@ const UserHeader = () => {
       </nav>
       <div
         className={`md:hidden ${
-          smallScreenNav ? "max-h-[24rem]" : "max-h-0 overflow-hidden"
+          smallScreenNav ? "max-h-96" : "max-h-0 overflow-hidden"
         } duration-300`}
       >
         <div className={"py-6 vertical-spacing inline-padding bg-[#F2F4F6] "}>
@@ -194,7 +204,7 @@ const UserHeader = () => {
             </li>
             <ul
               className={
-                "max-h-0 overflow-hidden group-hover:max-h-[14rem] ml-4 duration-300"
+                "max-h-0 overflow-hidden group-hover:max-h-56 ml-4 duration-300"
               }
             >
               <div className={"py-2 vertical-spacing gap-2"}>
@@ -253,11 +263,11 @@ const UserHeader = () => {
             onClick={() => {
               handleActiveBar("contact");
 
-              logout();
+              handleLogout();
             }}
             className={`${"text-blue-5"} hover:text-primary  duration-300`}
           >
-            Logout
+            {loggingOut ? "Logging Out...." : "Logout"}
           </Button>
         </div>
       </div>

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosResponse } from "axios";
+import { z } from "zod";
 export interface Address {
   street: string;
   city: string;
@@ -43,6 +45,7 @@ export interface AuthState {
   loading: boolean;
   user: User | null;
   hasRefreshed: boolean;
+  loggingOut: boolean;
   login: (data: { email: string; password: string }) => Promise<AxiosResponse>;
   createAccount: (data: {
     firstname: string;
@@ -53,7 +56,8 @@ export interface AuthState {
   }) => void;
   refreshToken: () => Promise<AxiosResponse | undefined>;
   resendVerification: (email: string) => void;
-  logout: () => void;
+  registerUser: (data: RegisterUserType) => Promise<AxiosResponse | any>;
+  logout: () => Promise<AxiosResponse | undefined>;
 }
 
 // product slice
@@ -112,3 +116,22 @@ export interface ProductState {
   getAllProducts: () => Promise<AxiosResponse>;
   getProduct: (product_id: string) => Promise<Product>;
 }
+
+export const RegisterUserSchema = z.object({
+  firstname: z.string().nonempty("firstname is required"),
+  lastname: z.string().nonempty("lastname is required"),
+  email: z.string().nonempty("email is required"),
+  password: z.string().nonempty("password is required"),
+});
+
+export type RegisterUserType = z.infer<typeof RegisterUserSchema>;
+
+export const LoginUserSchema = z.object({
+  email: z
+    .string()
+    .nonempty("Email is required")
+    .email("Invalid email address"),
+  password: z.string().nonempty("password is required"),
+});
+
+export type LoginUserType = z.infer<typeof LoginUserSchema>;

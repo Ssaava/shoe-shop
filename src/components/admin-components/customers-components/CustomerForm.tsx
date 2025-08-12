@@ -36,12 +36,12 @@ const CustomerForm = ({form, submitForm, action}: {
                                         className={"text-sm text-orange-5"}>*</span>
                                     </FormLabel>
                                     <FormControl>
-                                        <div className={"md:ml-2 border-[1px] rounded-lg px-4 py-2"}>
+                                        <div className={"md:ml-2 border rounded-lg px-4 py-2"}>
                                             <Input
                                                 placeholder="enter first name" {...field}
                                                 type={"text"}
                                                 required={true}
-                                                className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
+                                                className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
                                             />
                                         </div>
                                     </FormControl>
@@ -58,12 +58,12 @@ const CustomerForm = ({form, submitForm, action}: {
                                 <FormItem>
                                     <FormLabel className={"text-lg"}>Last Name</FormLabel>
                                     <FormControl>
-                                        <div className={"md:ml-2 border-[1px] rounded-lg px-4 py-2"}>
+                                        <div className={"md:ml-2 border rounded-lg px-4 py-2"}>
                                             <Input
                                                 autoComplete={"off"}
                                                 placeholder="enter last Name" {...field}
                                                 type={"text"}
-                                                className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
+                                                className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
                                             />
                                         </div>
                                     </FormControl>
@@ -83,13 +83,13 @@ const CustomerForm = ({form, submitForm, action}: {
                                         className={"text-sm text-orange-5"}>*</span>
                                     </FormLabel>
                                     <FormControl>
-                                        <div className={"md:ml-2 border-[1px] rounded-lg px-4 py-2"}>
+                                        <div className={"md:ml-2 border rounded-lg px-4 py-2"}>
                                             <Input
                                                 autoComplete={"off"}
                                                 placeholder="enter email" {...field}
                                                 type={"email"}
                                                 required={true}
-                                                className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
+                                                className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
                                             />
                                         </div>
                                     </FormControl>
@@ -109,13 +109,13 @@ const CustomerForm = ({form, submitForm, action}: {
                                     </FormLabel>
                                     <FormControl>
                                         <div
-                                            className={"md:ml-2 border-[1px] rounded-lg px-4 py-2 flex items-center gap-4 justify-between"}>
+                                            className={"md:ml-2 border rounded-lg px-4 py-2 flex items-center gap-4 justify-between"}>
                                             <Input
                                                 autoComplete={"off"}
                                                 placeholder="enter password" {...field}
                                                 type={`${showPassword ? "text" : "password"}`}
                                                 required={true}
-                                                className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
+                                                className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
                                             />
                                             {
                                                 showPassword ?
@@ -144,13 +144,13 @@ const CustomerForm = ({form, submitForm, action}: {
                                     </FormLabel>
                                     <FormControl>
                                         <div
-                                            className={"md:ml-2 border-[1px] rounded-lg px-4 py-2 flex items-center gap-4 justify-between"}>
+                                            className={"md:ml-2 border rounded-lg px-4 py-2 flex items-center gap-4 justify-between"}>
                                             <Input
                                                 autoComplete={"off"}
                                                 placeholder="confirm password" {...field}
                                                 type={`${showPassword ? "text" : "password"}`}
                                                 required={true}
-                                                className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
+                                                className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}
                                             />
                                             {
                                                 showPassword ?

@@ -1,34 +1,25 @@
-import { useForm } from "react-hook-form";
-import { loginSchema } from "@/assets/types.ts";
-import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input.tsx";
-import usePasswordToggle from "@/assets/utils.tsx";
-import { LuEye, LuEyeOff } from "react-icons/lu";
-import { Checkbox } from "@/components/ui/checkbox.tsx";
-import { Link, useNavigate } from "react-router-dom";
 import SubmitButton from "@/components/admin-components/SubmitButton.tsx";
+import FormItemInput from "@/components/forms/form-item-input";
+import { Checkbox } from "@/components/ui/checkbox.tsx";
+import { Form } from "@/components/ui/form";
 import { useAuthStore } from "@/store/store";
+import { LoginUserSchema, LoginUserType } from "@/store/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 const SignIn = () => {
-  const { showPassword, handleShowPassword } = usePasswordToggle();
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const loading = useAuthStore((state) => state.loading);
+
+  const form = useForm<LoginUserType>({
+    resolver: zodResolver(LoginUserSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
-  const submitForm = async (data: z.infer<typeof loginSchema>) => {
+  const submitForm = async (data: LoginUserType) => {
     const response = await login(data);
 
     if (response.status == 200) {
@@ -43,11 +34,11 @@ const SignIn = () => {
         }
       >
         <div
-          className={"bg-white max-w-[75rem] w-full p-6 md:p-16 mx-auto mt-16"}
+          className={"bg-white max-w-300 w-full p-6 md:p-16 mx-auto mt-16"}
         >
           <div
             className={
-              "max-w-[35rem] w-full p-8 vertical-spacing bg-white rounded-xl border mx-auto"
+              "max-w-140 w-full p-8 vertical-spacing bg-white rounded-xl border mx-auto"
             }
           >
             <h3
@@ -65,113 +56,44 @@ const SignIn = () => {
                 onSubmit={form.handleSubmit(submitForm)}
                 className={"w-full vertical-spacing gap-6 mt-4"}
               >
-                <FormField
-                  control={form.control}
-                  name={"email"}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className={"text-lg"}>
-                        Email Address
-                        <span className={"text-sm text-secondary"}>*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <div
-                          className={
-                            "md:ml-2 border-[1px] rounded-lg px-4 py-2"
-                          }
-                        >
-                          <Input
-                            placeholder="enter email"
-                            {...field}
-                            type={"email"}
-                            required={true}
-                            className={
-                              "outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"
-                            }
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                <FormItemInput
+                  form={form}
+                  name="email"
+                  label="Email Address"
+                  placeholder="enter email"
+                  isRequired={true}
+                  showError={true}
+                />
+                <FormItemInput
+                  form={form}
+                  name="password"
+                  type="password"
+                  label="Password"
+                  placeholder="*********"
+                  isRequired={true}
+                  link="/auth/request-otp"
+                  showError
                 />
 
-                <FormField
-                  control={form.control}
-                  name={"password"}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className={"text-lg"}>
-                        Email Address
-                        <span className={"text-sm text-secondary"}>*</span>
-                      </FormLabel>
-                      <FormControl>
-                        <div
-                          className={
-                            "md:ml-2 border-[1px] rounded-lg px-4 py-2 flex items-center gap-4 justify-between"
-                          }
-                        >
-                          <Input
-                            placeholder="enter password"
-                            {...field}
-                            type={`${showPassword ? "text" : "password"}`}
-                            required={true}
-                            className={
-                              "outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"
-                            }
-                          />
-                          {showPassword ? (
-                            <button
-                              type={"button"}
-                              onClick={handleShowPassword}
-                            >
-                              <LuEyeOff className={"text-2xl text-gray-3"} />
-                            </button>
-                          ) : (
-                            <button
-                              type={"button"}
-                              onClick={handleShowPassword}
-                            >
-                              <LuEye className={"text-2xl text-gray-3"} />
-                            </button>
-                          )}
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="flex items-center justify-between mt-4">
-                  <div
-                    className={"flex items-center gap-4 text-sm text-gray-8"}
+                <div className={"flex items-center gap-4 text-sm text-gray-8"}>
+                  <Checkbox id="terms" />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Keep me signed in
-                    </label>
-                  </div>
-                  <Link
-                    to={"/auth/request-otp"}
-                    className={"text-sm text-blue-5"}
-                  >
-                    Forgot Password?
-                  </Link>
+                    Keep me signed in
+                  </label>
                 </div>
-                <SubmitButton title={"Sign In"} />
+
+                <SubmitButton title={loading ? "Signing in..." : "Sign In"} />
               </form>
             </Form>
-            <div className={"mt-4"}>
-              <p className={"text-sm"}>
-                You do not have an account yet?{" "}
-                <Link to={"/auth/signup"} className={"ml-1 text-blue-5"}>
-                  Signup
-                </Link>
-              </p>
-            </div>
+            <p className={"text-sm"}>
+              You do not have an account yet?{" "}
+              <Link to={"/auth/signup"} className={"ml-1 text-blue-5"}>
+                Signup
+              </Link>
+            </p>
           </div>
         </div>
       </div>

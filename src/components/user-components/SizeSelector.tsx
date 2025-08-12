@@ -22,7 +22,7 @@ const SizeSelector = ({
             aria-label={`Size ${size}`}
             className={`${
               size === cartItemSize ? "border-black" : ""
-            } py-1 px-3 border-[1px] hover:border-black duration-300`}
+            } py-1 px-3 border hover:border-black duration-300`}
           >
             {size}
           </button>

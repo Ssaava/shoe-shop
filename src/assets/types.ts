@@ -90,58 +90,22 @@ export const productSchema = z.object({
   image: z.string(),
 });
 
-export const loginSchema = z.object({
-  email: z.string({
-    required_error: "Name is Required",
-  }),
-  password: z.string({
-    required_error: "Password is Required",
-  }),
-});
 export const resetPasswordSchema = z.object({
-  newPassword: z.string({
-    required_error: "Password is Required",
-  }),
-  confirmNewPassword: z.string({
-    required_error: "Password is Required",
-  }),
+  newPassword: z.string(),
+  confirmNewPassword: z.string(),
 });
 export const requestResetPasswordSchema = z.object({
-  email: z.string({
-    required_error: "Email is Required",
-  }),
+  email: z.string(),
 });
 export const resetTokenSchema = z.object({
-  otp: z.string({
-    required_error: "Otp is Required",
-  }),
-});
-
-export const signupSchema = z.object({
-  firstName: z.string({
-    required_error: "Please provide First Name",
-  }),
-  lastName: z.string(),
-  email: z.string({
-    required_error: "Name is Required",
-  }),
-  password: z.string({
-    required_error: "Password is Required",
-  }),
-  confirmPassword: z.string(),
+  otp: z.string(),
 });
 
 export const createUserSchema = z.object({
-  firstName: z.string({
-    required_error: "Please provide First Name",
-  }),
+  firstName: z.string(),
   lastName: z.string(),
-  email: z.string({
-    required_error: "Name is Required",
-  }),
-  password: z.string({
-    required_error: "Password is Required",
-  }),
+  email: z.string(),
+  password: z.string(),
   confirmPassword: z.string(),
   addProduct: z.boolean(),
   upDateProduct: z.boolean(),

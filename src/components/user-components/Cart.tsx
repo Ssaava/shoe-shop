@@ -45,11 +45,11 @@ const Cart = () => {
           onClick={(e) => e.stopPropagation()}
           className={`fixed right-0 top-0 bottom-0 shadow-lg shadow-blue-1 ${
             openCart ? "bg-white" : "translate-x-full"
-          } max-w-[40rem] w-full duration-300 flex flex-col`}
+          } max-w-160 w-full duration-300 flex flex-col`}
         >
           <div
             className={
-              "flex items-center justify-between section border-b-[1px]"
+              "flex items-center justify-between section border-b"
             }
           >
             <h3 className={"text-lg"}>Shopping Cart</h3>
@@ -84,14 +84,14 @@ const Cart = () => {
                           title="Reduce Product Count"
                           onClick={() => handleProductCount(id, "minus")}
                           className={
-                            "center-items bg-gray-200 border-[1px] border-gray-300 px-3 py-1"
+                            "center-items bg-gray-200 border border-gray-300 px-3 py-1"
                           }
                         >
                           <Minus />
                         </button>
                         <p
                           className={
-                            "center-items bg-gray-200 border-[1px] border-gray-300 px-3 py-1"
+                            "center-items bg-gray-200 border border-gray-300 px-3 py-1"
                           }
                         >
                           {productCounts[id] || 0}
@@ -101,7 +101,7 @@ const Cart = () => {
                           title="Inrease Product Count"
                           onClick={() => handleProductCount(id, "add")}
                           className={
-                            "center-items bg-gray-200 border-[1px] border-gray-300 px-3 py-1"
+                            "center-items bg-gray-200 border border-gray-300 px-3 py-1"
                           }
                         >
                           <Plus />
@@ -145,7 +145,7 @@ const Cart = () => {
             <div className={"mt-auto flex flex-col gap-6"}>
               <div
                 className={
-                  "section flex gap-4 items-center justify-between border-y-[1px]"
+                  "section flex gap-4 items-center justify-between border-y"
                 }
               >
                 <p>Subtotal:</p>

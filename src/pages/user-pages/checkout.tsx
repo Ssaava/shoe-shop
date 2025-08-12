@@ -100,7 +100,7 @@ const Checkout = () => {
                 type={"email"}
                 name={"email"}
                 placeholder={"email Address *"}
-                className={"border px-5 py-2 outline-none active:ring-0 w-full"}
+                className={"border px-5 py-2 outline-hidden active:ring-0 w-full"}
               />
 
               <div className={"vertical-spacing gap-6"}>
@@ -115,7 +115,7 @@ const Checkout = () => {
                     name={"firstName"}
                     placeholder={"First Name *"}
                     className={
-                      "border px-5 py-2 outline-none active:ring-0 w-full"
+                      "border px-5 py-2 outline-hidden active:ring-0 w-full"
                     }
                   />
                   <input
@@ -123,7 +123,7 @@ const Checkout = () => {
                     name={"lastName"}
                     placeholder={"Last Name *"}
                     className={
-                      "border px-5 py-2 outline-none active:ring-0 w-full"
+                      "border px-5 py-2 outline-hidden active:ring-0 w-full"
                     }
                   />
                 </div>
@@ -144,7 +144,7 @@ const Checkout = () => {
                     name={"town/village"}
                     placeholder={"Town / Village *"}
                     className={
-                      "border px-5 py-2 outline-none active:ring-0 w-full"
+                      "border px-5 py-2 outline-hidden active:ring-0 w-full"
                     }
                   />
                   <input
@@ -152,7 +152,7 @@ const Checkout = () => {
                     name={"district"}
                     placeholder={"District *"}
                     className={
-                      "border px-5 py-2 outline-none active:ring-0 w-full"
+                      "border px-5 py-2 outline-hidden active:ring-0 w-full"
                     }
                   />
                 </div>
@@ -162,7 +162,7 @@ const Checkout = () => {
                   name={"contact"}
                   placeholder={"Phone *"}
                   className={
-                    "border px-5 py-2 outline-none active:ring-0 w-full"
+                    "border px-5 py-2 outline-hidden active:ring-0 w-full"
                   }
                 />
               </div>
@@ -178,7 +178,7 @@ const Checkout = () => {
                   name={"additionalInformation"}
                   placeholder={"Notes About your order"}
                   className={
-                    "border px-5 py-2 outline-none active:ring-0 w-full"
+                    "border px-5 py-2 outline-hidden active:ring-0 w-full"
                   }
                 ></textarea>
               </div>

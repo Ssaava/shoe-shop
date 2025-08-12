@@ -21,7 +21,7 @@ const PasswordInput = ({title, handlePasswordForm}: Props)=>{
                         name={'newPassword'}
                         id={'current-password'}
                         placeholder={"8+ characters"}
-                        className={'w-full border-none hover:ring-0 ring-0 outline-none active:outline-none'}
+                        className={'w-full border-none hover:ring-0 ring-0 outline-hidden active:outline-hidden'}
                     />
                     {
                         showPassword ?

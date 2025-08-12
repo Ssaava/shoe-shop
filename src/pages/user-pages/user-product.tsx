@@ -95,7 +95,7 @@ const UserProduct = () => {
             <div style={gradientBackground} className={"relative"}>
               <div
                 className={
-                  "max-w-[33.5rem] max-h-[25rem] w-full h-full object-cover overflow-hidden flex items-center justify-center group"
+                  "max-w-134 max-h-100 w-full h-full object-cover overflow-hidden flex items-center justify-center group"
                 }
               >
                 <img
@@ -117,7 +117,7 @@ const UserProduct = () => {
                 <DialogContent>
                   <div
                     className={
-                      "bg-white max-w-[45rem] max-h-[45rem] h-full w-full object-cover"
+                      "bg-white max-w-180 max-h-180 h-full w-full object-cover"
                     }
                   >
                     <img
@@ -144,25 +144,25 @@ const UserProduct = () => {
                 sizes={product.sizes}
                 handleSelectSize={handleSelectSize}
               />
-              <div className={"border-y-[1px] py-4 flex items-center gap-4"}>
+              <div className={"border-y py-4 flex items-center gap-4"}>
                 <div className={"grid grid-cols-3 items-center"}>
                   <button
                     onClick={() => handleCount("subtract")}
                     aria-label="Decrease quantity"
-                    className={"py-1 px-3 border-[1px] h-full w-[2.75rem]"}
+                    className={"py-1 px-3 border h-full w-11"}
                   >
                     <AiOutlineMinus />
                   </button>
                   <button
                     aria-label={`Quantity: ${cartItem.quantity}}`}
-                    className={"py-1 px-3 border-[1px] h-full w-[2.75rem]"}
+                    className={"py-1 px-3 border h-full w-11"}
                   >
                     {cartItem.quantity}
                   </button>
                   <button
                     onClick={() => handleCount("add")}
                     aria-label="Increase quantity"
-                    className={"py-1 px-3 border-[1px] h-full w-[2.75rem]"}
+                    className={"py-1 px-3 border h-full w-11"}
                   >
                     <IoAddOutline />
                   </button>
@@ -170,7 +170,7 @@ const UserProduct = () => {
                 <form onSubmit={handleAddToCart}>
                   <SubmitButton
                     title={"ADD TO CART"}
-                    className={"!py-2 !text-base"}
+                    className={"py-2! text-base!"}
                   />
                 </form>
               </div>
