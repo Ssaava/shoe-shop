@@ -72,7 +72,7 @@ export default function FormItemInput({
               <PopoverTrigger asChild>
                 <FormControl className={inputControlClassName}>
                   <Button
-                    variant={"outline-solid"}
+                    variant={"outline"}
                     type="button"
                     className={cn(
                       "pl-3 text-left font-normal",
