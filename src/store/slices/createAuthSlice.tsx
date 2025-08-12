@@ -2,13 +2,14 @@ import { postData } from "@/lib/utils";
 import { AxiosResponse } from "axios";
 import { StateCreator } from "zustand";
 import { useAuthStore, useProductStore } from "../store";
-import { AuthState } from "../types";
+import { AuthState, RegisterUserType } from "../types";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 const initialState = {
   authenticating: false,
   user: null,
   hasRefreshed: false,
   loading: false,
+  loggingOut: false,
 };
 
 export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
@@ -62,17 +63,35 @@ export const createAuthSlice: StateCreator<AuthState, [], [], AuthState> = (
     set({ loading: false });
     return response;
   },
+
   resendVerification: async (email: string) => {
     console.log(email);
   },
+  registerUser: async (data: RegisterUserType) => {
+    set({ loading: true });
+    const response = (await postData<RegisterUserType>(
+      `${SERVER_URL}/api/auth/logout`,
+      data
+    )) as AxiosResponse;
+
+    if (response.status === 200) {
+      set({ ...initialState });
+      return response;
+    }
+    set({ loading: false });
+    return response;
+  },
   logout: async () => {
+    set({ loggingOut: true });
     useAuthStore.persist.clearStorage();
     const response = (await postData(
       `${SERVER_URL}/api/auth/logout`
     )) as AxiosResponse;
     if (response.status === 200) {
       set({ ...initialState });
-      console.log("User logged out successfully");
+      return response;
     }
+    set({ loggingOut: false });
+    return response;
   },
 });

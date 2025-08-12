@@ -1,9 +1,10 @@
-import logo from "/full-logo.png";
-import { Link } from "react-router-dom";
 import { useActiveNav } from "@/assets/utils.tsx";
 import Cart from "@/components/user-components/Cart.tsx";
 import { IoMdMenu } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "/full-logo.png";
 
+import HeaderLink from "@/components/HeaderLink.tsx";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,9 +13,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { FaChevronRight } from "react-icons/fa";
-import HeaderLink from "@/components/HeaderLink.tsx";
 import { useAuthStore } from "@/store/store";
+import { FaChevronRight } from "react-icons/fa";
 import { Button } from "../ui/button";
 
 const UserHeader = () => {
@@ -25,9 +25,19 @@ const UserHeader = () => {
     handleActiveBar,
     path,
   } = useActiveNav();
+  const navigate = useNavigate();
 
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
+  const loggingOut = useAuthStore((state) => state.loggingOut);
+
+  const handleLogout = async () => {
+    const response = await logout();
+
+    if (response?.status == 200) {
+      navigate(0);
+    }
+  };
   return (
     <>
       <nav className={"flex items-center gap-4 section bg-white z-50"}>
@@ -111,14 +121,14 @@ const UserHeader = () => {
                         <NavigationMenuLink
                           onClick={() => {
                             handleActiveBar("my-account");
-                            logout();
+                            handleLogout();
                           }}
                           asChild
                         >
                           <Button
                             className={`hover:text-primary hover-font-medium px-5 py-3 duration-300`}
                           >
-                            Logout
+                            {loggingOut ? "Logging Out...." : "Logout"}
                           </Button>
                         </NavigationMenuLink>
                       </>
@@ -253,11 +263,11 @@ const UserHeader = () => {
             onClick={() => {
               handleActiveBar("contact");
 
-              logout();
+              handleLogout();
             }}
             className={`${"text-blue-5"} hover:text-primary  duration-300`}
           >
-            Logout
+            {loggingOut ? "Logging Out...." : "Logout"}
           </Button>
         </div>
       </div>
