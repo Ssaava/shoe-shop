@@ -20,7 +20,7 @@ const Notifications = ({notifications}:  {notifications: Notification[]})=>{
                     </div>
                 </MenubarTrigger>
                 <MenubarContent className={'mx-8 md:mx-12'}>
-                    <div className={'max-h-[17rem] overflow-scroll'}>
+                    <div className={'max-h-68 overflow-scroll'}>
                         {
                             notifications.length > 0 ?
 

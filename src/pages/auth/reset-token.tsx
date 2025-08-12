@@ -18,8 +18,8 @@ const ResetToken = ()=>{
     return (
         <>
             <div className={"w-screen pb-16 section inline-padding flex flex-col bg-[#F2F4F6]"}>
-                <div className={"bg-white max-w-[75rem] w-full p-6 md:p-16 mx-auto mt-16"}>
-                    <div className={"max-w-[35rem] w-full p-8 vertical-spacing bg-white rounded-xl border mx-auto"}>
+                <div className={"bg-white max-w-300 w-full p-6 md:p-16 mx-auto mt-16"}>
+                    <div className={"max-w-140 w-full p-8 vertical-spacing bg-white rounded-xl border mx-auto"}>
                         <h3 className={"text-2xl md:text-5xl font-extrabold md:text-center text-primary"}>Enter OTP</h3>
                         <p className={"text-gray-8 text-sm text-center"}>Enter OTP to reset Password</p>
                         <form onSubmit={submitForm}

@@ -33,7 +33,7 @@ const DeleteNotification = ({children, notificationId}: Props)=>{
                         <form onSubmit={e=>e.preventDefault()} className={"block w-full px-6 py-3 bg-orange-5 text-white rounded-lg"}>
                             <button type={"submit"} className={"w-full"}>Proceed</button>
                         </form>
-                        <button onClick={handleCloseModel} className={"w-full px-6 py-3 text-gray-8 border-[1px] bg-transparent rounded-lg"}>Cancel</button>
+                        <button onClick={handleCloseModel} className={"w-full px-6 py-3 text-gray-8 border bg-transparent rounded-lg"}>Cancel</button>
                     </div>
                 </DialogContent>
             </Dialog>

@@ -88,7 +88,7 @@ const Profile = ()=>{
                 </div>
 
                 <div className={"xl:flex gap-4 mt-8 xl:flex-wrap"}>
-                    <div className={"xl:max-w-[35rem] mx-auto w-full bg-white rounded-lg vertical-spacing h-fit"}>
+                    <div className={"xl:max-w-140 mx-auto w-full bg-white rounded-lg vertical-spacing h-fit"}>
                         <div className={"vertical-spacing p-6 "}>
                             <div className={"relative rounded-lg w-full"}>
                                 <div className={"w-full h-full relative"}>
@@ -105,7 +105,7 @@ const Profile = ()=>{
                                 </div>
 
                                 <div
-                                    className={"flex items-center justify-center absolute -bottom-10 md:-bottom-20 w-[5rem] h-[5rem] md:w-[8rem] md:h-[8rem] rounded-full border-[.5rem] border-green-5 left-1/2 -translate-x-1/2"}>
+                                    className={"flex items-center justify-center absolute -bottom-10 md:-bottom-20 w-20 h-20 md:w-32 md:h-32 rounded-full border-[.5rem] border-green-5 left-1/2 -translate-x-1/2"}>
                                     <img src={userImage} alt={"User Image"}
                                          className={"block rounded-full w-full h-full"}/>
                                     <label

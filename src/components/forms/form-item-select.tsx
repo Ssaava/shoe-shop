@@ -52,7 +52,7 @@ const FormItemSelect = ({
                 <SelectValue placeholder={placeholder || "Select a value"} />
               </SelectTrigger>
             </FormControl>
-            <SelectContent className="w-[var(--radix-select-trigger-width)]">
+            <SelectContent className="w-(--radix-select-trigger-width)">
               {options.map(({ value, label }, index) => (
                 <SelectItem value={value} key={index}>
                   {label}

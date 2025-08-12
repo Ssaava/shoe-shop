@@ -185,7 +185,7 @@ export default UserFooter
 //             <div className=" inline-padding py-10 text-center md:text-left">
 //                 <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
 //                     {/* <!-- Products section --> */}
-//                     <div className="vertical-spacing !gap-1">
+//                     <div className="vertical-spacing gap-1!">
 //                         <h6
 //                             className="mb-4 flex justify-center font-extrabold uppercase md:justify-start">
 //                             Categories
@@ -198,7 +198,7 @@ export default UserFooter
 //                     </div>
 //
 //                     {/**/}
-//                     <div className="vertical-spacing !gap-1">
+//                     <div className="vertical-spacing gap-1!">
 //                         <h6
 //                             className="mb-4 flex justify-center font-extrabold uppercase md:justify-start">
 //                             Business
@@ -210,7 +210,7 @@ export default UserFooter
 //                         }
 //                     </div>
 //                     {/* <!-- Useful links section --> */}
-//                     <div className="vertical-spacing !gap-1">
+//                     <div className="vertical-spacing gap-1!">
 //                         <h6
 //                             className="mb-4 flex justify-center font-extrabold uppercase md:justify-start">
 //                             Usefull links

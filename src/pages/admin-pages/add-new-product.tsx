@@ -117,9 +117,9 @@ const AddNewProduct = ()=>{
                                             <FormLabel className={"text-lg"}>Product Name <span
                                                 className={"text-sm text-orange-5"}>*</span></FormLabel>
                                             <FormControl>
-                                                <div className={"md:ml-2 border-[1px] rounded-lg px-4 py-2"}>
+                                                <div className={"md:ml-2 border rounded-lg px-4 py-2"}>
                                                     <Input placeholder="product name" {...field}
-                                                           className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}/>
+                                                           className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}/>
                                                 </div>
                                             </FormControl>
                                             <FormDescription>Do not exceed 20 characters when entering the product
@@ -260,7 +260,7 @@ const AddNewProduct = ()=>{
                                                 <FormLabel htmlFor={"drop-zone"}>
                                                     <div
                                                         {...getRootProps()}
-                                                        className={"border-[2px] p-4 border-dashed border-blue-5 h-48 w-full rounded-lg center-items"}>
+                                                        className={"border-2 p-4 border-dashed border-blue-5 h-48 w-full rounded-lg center-items"}>
                                                         <div className={"vertical-spacing"}>
                                                             <AiOutlineCloudUpload
                                                                 className={"mx-auto text-5xl text-blue-5"}/>
@@ -303,10 +303,10 @@ const AddNewProduct = ()=>{
                                                 <FormLabel className={"text-lg"}>Product Price <span
                                                     className={"text-sm text-orange-5"}>*</span></FormLabel>
                                                 <FormControl>
-                                                    <div className={"md:ml-2 border-[1px] rounded-lg px-4 py-2"}>
+                                                    <div className={"md:ml-2 border rounded-lg px-4 py-2"}>
                                                         <Input
                                                             placeholder="product price" {...field}
-                                                            className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}/>
+                                                            className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}/>
                                                     </div>
                                                 </FormControl>
                                                 <FormMessage/>
@@ -322,11 +322,11 @@ const AddNewProduct = ()=>{
                                                 <FormLabel className={"text-lg"}>Quantity <span
                                                     className={"text-sm text-orange-5"}>*</span></FormLabel>
                                                 <FormControl>
-                                                    <div className={"md:ml-2 border-[1px] rounded-lg px-4 py-2"}>
+                                                    <div className={"md:ml-2 border rounded-lg px-4 py-2"}>
                                                         <Input
                                                             type={"number"}
                                                             placeholder="product quantity" {...field}
-                                                            className={"outline-none border-none ring-0 shadow-none bg-none focus-visible:ring-0"}/>
+                                                            className={"outline-hidden border-none ring-0 shadow-none bg-none focus-visible:ring-0"}/>
                                                     </div>
                                                 </FormControl>
                                                 <FormMessage/>
@@ -369,7 +369,7 @@ const AddNewProduct = ()=>{
                                                     <PopoverTrigger asChild>
                                                         <FormControl className={"shadow-none py-5"}>
                                                             <Button
-                                                                variant={"outline"}
+                                                                variant={"outline-solid"}
                                                                 className={cn(
                                                                     "w-[240px] pl-3 text-left font-normal",
                                                                     !field.value && "text-muted-foreground"

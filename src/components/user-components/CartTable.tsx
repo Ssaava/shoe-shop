@@ -67,20 +67,20 @@ const CartTable = () => {
                   <div className={"grid grid-cols-3 items-center w-fit"}>
                     <button
                       onClick={() => handleProductCount(id, "minus")}
-                      className={"py-1 px-3 border-[1px] h-full w-[2.75rem]"}
+                      className={"py-1 px-3 border h-full w-11"}
                       title="Decrease quantity"
                     >
                       <AiOutlineMinus />
                     </button>
                     <button
-                      className={"py-1 px-3 border-[1px] h-full w-[2.75rem]"}
+                      className={"py-1 px-3 border h-full w-11"}
                       title="Current quantity"
                     >
                       {productCounts[id] || 1}
                     </button>
                     <button
                       onClick={() => handleProductCount(id, "add")}
-                      className={"py-1 px-3 border-[1px] h-full w-[2.75rem]"}
+                      className={"py-1 px-3 border h-full w-11"}
                       title="Increase quantity"
                     >
                       <IoAddOutline />

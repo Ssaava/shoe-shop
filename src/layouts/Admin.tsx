@@ -14,7 +14,7 @@ const Admin = ()=>{
         <>
             <div className={"relative bg-blue-1"}>
                 <Sidebar handleToggleSidebar={handleToggleSidebar} toggleSidebar={toggleSidebar} />
-                <div className={`${toggleSidebar ? "lg:ml-[18rem]": ""} duration-300 min-h-screen`}>
+                <div className={`${toggleSidebar ? "lg:ml-72": ""} duration-300 min-h-screen`}>
                     <Header handleToggleSidebar={handleToggleSidebar} toggleSidebar={toggleSidebar}/>
                     <div className={"p-8 md:p-12"}>
                         <Outlet context={{toggleSidebar}}/>

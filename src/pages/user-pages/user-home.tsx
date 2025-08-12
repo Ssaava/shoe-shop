@@ -37,7 +37,7 @@ const UserHome = () => {
               src={shoes}
               alt={"Boots"}
               style={{ filter: "unset" }}
-              className={"mx-auto block w-auto max-h-[50rem] h-full"}
+              className={"mx-auto block w-auto max-h-200 h-full"}
             />
           </div>
           <Link
@@ -84,7 +84,7 @@ const UserHome = () => {
                     <img
                       src={images[0].url}
                       alt={name}
-                      className="max-w-[33.5rem] max-h-[25rem] w-full h-full object-cover"
+                      className="max-w-134 max-h-100 w-full h-full object-cover"
                     />
                   </CarouselItem>
                 ))}
@@ -138,7 +138,7 @@ const UserHome = () => {
           </h2>
           <p
             className={
-              "sm:w-fit sm:mx-auto text-justify text-white max-w-[45rem]"
+              "sm:w-fit sm:mx-auto text-justify text-white max-w-180"
             }
           >
             Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris

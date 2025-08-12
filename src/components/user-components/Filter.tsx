@@ -49,11 +49,11 @@ const Filter = () => {
             onClick={(e) => e.stopPropagation()}
             className={`fixed left-0 top-0 bottom-0 shadow-lg shadow-blue-1 ${
               openFilter ? "bg-white" : "-translate-x-full"
-            } max-w-[27rem] w-full duration-300 flex flex-col`}
+            } max-w-108 w-full duration-300 flex flex-col`}
           >
             <div
               className={
-                "flex items-center justify-between section border-b-[1px]"
+                "flex items-center justify-between section border-b"
               }
             >
               <h3 className={"text-lg font-bold"}>Search Products</h3>
@@ -90,7 +90,7 @@ const Filter = () => {
                   {products.map(({ category }) => (
                     <button
                       type={"submit"}
-                      className={"py-2 px-4 border-[1px]"}
+                      className={"py-2 px-4 border"}
                     >
                       {category?.name}
                     </button>

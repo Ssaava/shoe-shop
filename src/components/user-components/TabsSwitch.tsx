@@ -11,7 +11,7 @@ const TabsSwitch = ({ activeTab, handleActiveTab }: TabsSwitchProps) => {
   ];
 
   return (
-    <div className="border-t-[1px] w-full flex gap-4 flex-wrap mt-20">
+    <div className="border-t w-full flex gap-4 flex-wrap mt-20">
       {tabs.map(({ id, label }) => (
         <button
           key={id}

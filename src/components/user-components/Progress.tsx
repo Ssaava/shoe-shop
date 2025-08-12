@@ -12,7 +12,7 @@ function Progress({steps = 0}: Props) {
     return (
         <div className="flex items-center mt-12 mb-28">
 
-            <div className={clsx("max-w-[65rem] w-full mx-auto h-4 relative bg-[rgba(205,249,219,.7)]",{
+            <div className={clsx("max-w-260 w-full mx-auto h-4 relative bg-[rgba(205,249,219,.7)]",{
                 "progress-bg-1" : steps >= 1,
                 "progress-bg-2" : steps >= 2,
                 "progress-bg-3" : steps >= 3

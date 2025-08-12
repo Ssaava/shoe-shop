@@ -70,7 +70,7 @@ const ProductSlider = () => {
             .map(({ _id, name, images, category, price }, index) => (
               <ProductCard
                 key={index}
-                className={"embla__slide max-w-[22rem] mx-4"}
+                className={"embla__slide max-w-88 mx-4"}
                 category={category?.name}
                 name={name}
                 image={images[0].url}
@@ -81,13 +81,13 @@ const ProductSlider = () => {
         </div>
         <PrevButton
           className={
-            "bg-white shadow absolute top-1/2 -translate-y-1/2 left-0 rounded-full p-4"
+            "bg-white shadow-sm absolute top-1/2 -translate-y-1/2 left-0 rounded-full p-4"
           }
           onClick={() => handleNextPrevButtonClick(onPrevButtonClick)}
         />
         <NextButton
           className={
-            "bg-white shadow absolute top-1/2 -translate-y-1/2 right-0 rounded-full p-4"
+            "bg-white shadow-sm absolute top-1/2 -translate-y-1/2 right-0 rounded-full p-4"
           }
           onClick={() => handleNextPrevButtonClick(onNextButtonClick)}
         />

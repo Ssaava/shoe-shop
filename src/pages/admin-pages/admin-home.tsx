@@ -36,7 +36,7 @@ const AdminHome = ()=>{
                             <Link to={"/admin/products"} className={"text-blue-5 font-light"}>see all</Link>
                         </div>
                         <div>
-                            <Table className={"min-w-[32rem]"}>
+                            <Table className={"min-w-lg"}>
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead>Product</TableHead>
@@ -82,7 +82,7 @@ const AdminHome = ()=>{
                             <Link to={"/admin/orders"} className={"text-blue-5 font-light"}>see all</Link>
                         </div>
                         <div>
-                            <Table className={"min-w-[32rem]"}>
+                            <Table className={"min-w-lg"}>
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead>Product</TableHead>
