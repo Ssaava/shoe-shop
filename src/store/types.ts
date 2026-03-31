@@ -71,7 +71,7 @@ export interface Product {
   images: ProductImage[];
   sizes: string[];
   avRating: number;
-  ratings: Rating[]; // adjust this if ratings have a structure later
+  ratings: Rating[];
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -112,8 +112,8 @@ export interface Rating {
 
 export interface ProductState {
   products: Product[];
-  fetchingProducts: boolean;
-  getAllProducts: () => Promise<AxiosResponse>;
+  fetching_products: boolean;
+  getAllProducts: () => Promise<AxiosResponse | Product[]>;
   getProduct: (product_id: string) => Promise<Product>;
 }
 

@@ -1,5 +1,4 @@
 import { useProductStore } from "@/store/store";
-import MultiRangeSlider from "multi-range-slider-react";
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { GoDash } from "react-icons/go";
@@ -7,24 +6,10 @@ import { VscSettings } from "react-icons/vsc";
 const Filter = () => {
   const products = useProductStore((state) => state.products);
   const [openFilter, setOpenFilter] = useState<boolean>(false);
-  const [minValue, setMinValue] = useState(25);
-  const [maxValue, setMaxValue] = useState(75);
-  const handleInput = (e: {
-    min?: number;
-    max?: number;
-    minValue: number;
-    maxValue: number;
-  }) => {
-    setMinValue(e.minValue);
-    setMaxValue(e.maxValue);
-  };
   const handleOpenFilter = () => {
     setOpenFilter((prev) => !prev);
   };
 
-  const handleSubmitForm = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-  };
   return (
     <>
       <div className={"z-50"}>
@@ -52,9 +37,7 @@ const Filter = () => {
             } max-w-108 w-full duration-300 flex flex-col`}
           >
             <div
-              className={
-                "flex items-center justify-between section border-b"
-              }
+              className={"flex items-center justify-between section border-b"}
             >
               <h3 className={"text-lg font-bold"}>Search Products</h3>
               <button onClick={handleOpenFilter} className={"text-2xl"}>
@@ -62,10 +45,7 @@ const Filter = () => {
               </button>
             </div>
             <div>
-              <form
-                onSubmit={handleSubmitForm}
-                className={"section flex items-center gap-1 mt-8"}
-              >
+              <div className={"section flex items-center gap-1 mt-8"}>
                 <input
                   type={"search"}
                   className={
@@ -80,47 +60,20 @@ const Filter = () => {
                 >
                   Search
                 </button>
-              </form>
+              </div>
               <div className={"section"}>
                 <h3 className={"mb-8 text-lg font-bold"}>Product Categories</h3>
-                <form
-                  onSubmit={handleSubmitForm}
-                  className={"flex items-center gap-4 flex-wrap"}
-                >
+                <div className={"flex items-center gap-4 flex-wrap"}>
                   {products.map(({ category }) => (
-                    <button
-                      type={"submit"}
-                      className={"py-2 px-4 border"}
-                    >
+                    <button type={"submit"} className={"py-2 px-4 border"}>
                       {category?.name}
                     </button>
                   ))}
-                </form>
+                </div>
               </div>
               <div className={"section"}>
                 <h3 className={"mb-8 text-lg font-bold"}>Filter by Price</h3>
-                <form
-                  onSubmit={handleSubmitForm}
-                  className={"vertical-spacing"}
-                >
-                  <MultiRangeSlider
-                    min={0}
-                    max={100}
-                    step={5}
-                    ruler={false}
-                    minValue={minValue}
-                    maxValue={maxValue}
-                    label={false}
-                    barLeftColor={"#F2F4F6"}
-                    barRightColor={"#F2F4F6"}
-                    barInnerColor={"rgb(34, 197, 94)"}
-                    thumbLeftColor={"rgb(34, 197, 94)"}
-                    thumbRightColor={"rgb(34, 197, 94)"}
-                    className={"shadow-none border-none p-0 mb-6"}
-                    onInput={(e) => {
-                      handleInput(e);
-                    }}
-                  />
+                <div className={"vertical-spacing"}>
                   <div className={"flex items-center justify-between gap-4"}>
                     <button
                       type={"submit"}
@@ -132,12 +85,12 @@ const Filter = () => {
                     </button>
                     <p className={"text-sm font-light flex items-center gap-2"}>
                       Price:
-                      <span className={"font-medium"}>${minValue}</span>
+                      <span className={"font-medium"}>$0</span>
                       <GoDash className={"font-medium"} />
-                      <span className={"font-medium"}>${maxValue}</span>
+                      <span className={"font-medium"}>$100</span>
                     </p>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

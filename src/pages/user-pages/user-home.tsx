@@ -16,6 +16,7 @@ import shoes from "/images/sports-shoe4.png";
 
 const UserHome = () => {
   const products = useProductStore((state) => state.products);
+
   return (
     <>
       <div>
@@ -137,9 +138,7 @@ const UserHome = () => {
             AirPro X3. Turbocharged.
           </h2>
           <p
-            className={
-              "sm:w-fit sm:mx-auto text-justify text-white max-w-180"
-            }
+            className={"sm:w-fit sm:mx-auto text-justify text-white max-w-180"}
           >
             Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris
             vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu

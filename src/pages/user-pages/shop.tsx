@@ -8,12 +8,25 @@ import {
 } from "@/components/ui/select";
 import Filter from "@/components/user-components/Filter.tsx";
 import { useProductStore } from "@/store/store";
+import { Product } from "@/store/types";
 import { Rating } from "@smastrom/react-rating";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Shop = () => {
-  const fetchingProducts = useProductStore((state) => state.fetchingProducts);
-  const products = useProductStore((state) => state.products);
+  const fetching_products = useProductStore((state) => state.fetching_products);
+  const [products, setProducts] = useState<Product[]>([]);
+  const getAllProducts = useProductStore((state) => state.getAllProducts);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const products: Product[] = (await getAllProducts()) as Product[];
+      setProducts(products);
+    };
+    loadProducts();
+  }, [getAllProducts]);
+
+  console.log("Products: ", products);
 
   return (
     <>
@@ -43,7 +56,7 @@ const Shop = () => {
 
         {/*Products*/}
 
-        {fetchingProducts ? (
+        {fetching_products ? (
           <>Loading...</>
         ) : (
           <div
@@ -51,49 +64,50 @@ const Shop = () => {
               "grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4"
             }
           >
-            {products.map(({ _id, images, name, category, price }) => (
-              <div key={_id} className={"min-h-[32.616rem]"}>
-                <Link
-                  to={`/product/${_id}`}
-                  className={
-                    "group w-full max-h-[19.688rem] h-full bg-white flex items-center justify-center p-4"
-                  }
-                  style={gradientBackground}
-                >
-                  <img
-                    src={images[0].url}
-                    alt={"Product Name"}
-                    className={
-                      "group-hover:scale-110 duration-700 block max-h-56 max-w-56 w-full h-full object-cover"
-                    }
-                  />
-                </Link>
-                <div className={"vertical-spacing gap-2 w-fit mx-auto py-6"}>
-                  <p className={"text-sm text-center text-green-5"}>
-                    {category?.name}
-                  </p>
+            {products.length > 0 &&
+              products.map(({ _id, images, name, category, price }) => (
+                <div key={_id} className={"min-h-[32.616rem]"}>
                   <Link
                     to={`/product/${_id}`}
-                    className={"font-extrabold text-lg block text-center"}
+                    className={
+                      "group w-full max-h-[19.688rem] h-full bg-white flex items-center justify-center p-4"
+                    }
+                    style={gradientBackground}
                   >
-                    {name}
-                  </Link>
-                  <div className={"w-fit mx-auto"}>
-                    <Rating
-                      style={{ maxWidth: 100 }}
-                      value={3}
-                      readOnly={true}
+                    <img
+                      src={images[0].url}
+                      alt={"Product Name"}
+                      className={
+                        "group-hover:scale-110 duration-700 block max-h-56 max-w-56 w-full h-full object-cover"
+                      }
                     />
-                  </div>
-                  <div className={"flex items-center gap-2 w-fit mx-auto"}>
-                    <p className={"text-sm line-through text-gray-8"}>
-                      2500ugx
+                  </Link>
+                  <div className={"vertical-spacing gap-2 w-fit mx-auto py-6"}>
+                    <p className={"text-sm text-center text-green-5"}>
+                      {category?.name}
                     </p>
-                    <p className={"font-medium"}>{price}</p>
+                    <Link
+                      to={`/product/${_id}`}
+                      className={"font-extrabold text-lg block text-center"}
+                    >
+                      {name}
+                    </Link>
+                    <div className={"w-fit mx-auto"}>
+                      <Rating
+                        style={{ maxWidth: 100 }}
+                        value={3}
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={"flex items-center gap-2 w-fit mx-auto"}>
+                      <p className={"text-sm line-through text-gray-8"}>
+                        2500ugx
+                      </p>
+                      <p className={"font-medium"}>{price}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         )}
       </div>
